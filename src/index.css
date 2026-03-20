@@ -1,0 +1,50 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #1a1a1a;
+  padding: 14px 24px;
+}
+
+.content-section{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.player {
+  color: #1db954;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.nav-right {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-right span {
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nav-right span:hover {
+  color: #1db954;
+}
+
+.all-songs {
+    display: flex;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    margin-top: 30px;
+    padding: 10px;
+    width: 20%;
+    height: fit-content;
+}
+
+.all-songs h2 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
