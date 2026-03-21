@@ -60,6 +60,67 @@ const songs = [
 ];
 
 export const useMusic = () => {
-    const [allsongs , setAllsongs] = useState(songs)
-    return {allsongs}
+  const [allsongs, setAllsongs] = useState(songs)
+  const [currentTrack, setCurrentTrack] = useState(songs[0])
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [isPlaying , setIsPlaying] = useState(false)
+
+
+  const handlePlaySong = (song, index) => {
+    setCurrentTrack(song),
+      setCurrentTrackIndex(index)
+  }
+
+  const nextTrack = () => {
+    if (currentTrackIndex === allsongs.length - 1) {
+      setCurrentTrackIndex(0)
+      setCurrentTrack(allsongs[0])
+    }
+    else {
+      setCurrentTrackIndex(currentTrackIndex + 1)
+      setCurrentTrack(allsongs[currentTrackIndex + 1])
+    }
+  }
+
+  const prevTrack = () => {
+    if (currentTrackIndex === 0) {
+      setCurrentTrackIndex(allsongs.length - 1)
+      setCurrentTrack(allsongs[allsongs.length - 1])
+    }
+    else {
+      setCurrentTrackIndex(currentTrackIndex - 1)
+      setCurrentTrack(allsongs[currentTrackIndex - 1])
+    }
+  }
+
+  const formatTime = (time) => {
+    if (isNaN(time) || time === undefined) return "0:00"
+
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60)
+
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`
+  }
+
+  const play = () => setIsPlaying(true)
+  const pause = () => setIsPlaying(false)
+
+  return { allsongs, 
+    handlePlaySong, 
+    currentTrack, 
+    currentTrackIndex, 
+    formatTime, 
+    currentTime, 
+    duration, 
+    setDuration, 
+    setCurrentTrack, 
+    setCurrentTime , 
+    nextTrack , 
+    prevTrack ,
+    play,
+    pause,
+    isPlaying
+  }
 } 
