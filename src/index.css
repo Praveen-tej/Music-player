@@ -145,7 +145,6 @@ body {
   padding: 24px;
 }
 
-
 .track-info {
   display: flex;
   flex-direction: column;
@@ -233,4 +232,12 @@ body {
 
 .control-play:hover {
   background-color: #17a347;
+}
+
+.progress-bar {
+    background: linear-gradient(
+        to right,
+        #1db954 var(--progress),  
+        #555555 var(--progress)    
+    )
 }

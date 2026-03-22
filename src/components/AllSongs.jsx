@@ -10,8 +10,7 @@ export const Allsongs = () => {
           <div
             key={song.id}
             className={`song-card ${currentTrackIndex === key ? "active" : ""}`}
-            onClick={() => handlePlaySong(song, key)}
-          >
+            onClick={() => handlePlaySong(song, key)} >
             <div className="song-info">
               <h3 className="song-title">{song.title}</h3>
               <p className="song-artist">{song.artist}</p>

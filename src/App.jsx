@@ -8,12 +8,10 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-
       <div className="main-content">        
         <div className="audio-player">
           <Player />
         </div>
-
         <div className="content-section">
           <Routes>
             <Route path="/" element={<Allsongs />} />
@@ -24,5 +22,4 @@ function App() {
     </BrowserRouter>
   )
 }
-
 export default App
