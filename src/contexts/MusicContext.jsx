@@ -77,7 +77,6 @@ export const MusicProvider = ({ children }) => {
     setCurrentTrackIndex(index);
   };
 
-
   const nextTrack = () => {
     if (currentTrackIndex === allsongs.length - 1) {
       setCurrentTrackIndex(0);
