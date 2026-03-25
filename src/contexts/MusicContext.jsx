@@ -55,7 +55,7 @@ const songs = [
   {
     id: 8,
     title: "Momentary Bliss",
-    artist: "EchoBR",  
+    artist: "EchoBR",
     url: "/songs/Momentary Bliss.wav",
     duration: "2:45",
   },
@@ -69,11 +69,10 @@ export const MusicProvider = ({ children }) => {
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
-  const [playLists , setPlayList] = useState([])
-
+  const [playLists, setPlayList] = useState([]);
 
   const handlePlaySong = (song, index) => {
-    setCurrentTrack(song)
+    setCurrentTrack(song);
     setCurrentTrackIndex(index);
   };
 
@@ -108,12 +107,28 @@ export const MusicProvider = ({ children }) => {
 
   const createPlaylists = (name) => {
     const newPlaylist = {
-      id:Date.now(),
+      id: Date.now(),
       name,
-      songs: []
-    }
+      songs: [],
+    };
 
-    setPlayList((prev) => [...prev, newPlaylist])
+    setPlayList((prev) => [...prev, newPlaylist]);
+  };
+
+  const addSongToPlaylist = (playlistId, song) => {
+    setPlayList((prev) =>
+      prev.map((playlist) => {
+        if (playlist.id === playlistId) {
+          return { ...playlist, songs: [...playlist.songs, song] };
+        } else {
+          return playlist;
+        }
+      }),
+    );
+  };
+
+  const removePlaylist = (playlistId) => {
+    setPlayList((prev) => prev.filter((playlist) => playlist.id !== playlistId))
   }
 
   const play = () => setIsPlaying(true);
@@ -131,6 +146,7 @@ export const MusicProvider = ({ children }) => {
         duration,
         setDuration,
         setCurrentTrack,
+        currentTrackIndex,
         setCurrentTime,
         nextTrack,
         prevTrack,
@@ -142,7 +158,10 @@ export const MusicProvider = ({ children }) => {
         setVolume,
         playLists,
         setPlayList,
-        createPlaylists
+        createPlaylists,
+        addSongToPlaylist,
+        handlePlaySong,
+        removePlaylist
       }}
     >
       {children}
@@ -150,13 +169,12 @@ export const MusicProvider = ({ children }) => {
   );
 };
 
-
 export const useMusic = () => {
-    const contextValue = useContext(MusicContext)
+  const contextValue = useContext(MusicContext);
 
-    if(!contextValue){
-        throw new Error("useMusic must be inside MusicProvider")
-    }
+  if (!contextValue) {
+    throw new Error("useMusic must be inside MusicProvider");
+  }
 
-    return contextValue
-}
+  return contextValue;
+};

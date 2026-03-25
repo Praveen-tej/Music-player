@@ -93,7 +93,6 @@ export const Player = () => {
   }, [currentTrack, setCurrentTime, setDuration]);
 
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
-
   return (
     <div className="music-player">
       <audio

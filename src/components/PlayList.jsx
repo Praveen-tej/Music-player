@@ -7,7 +7,15 @@ export default function Playlist() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const { playLists, createPlaylists, allsongs } = useMusic();
+  const {
+    playLists,
+    createPlaylists,
+    allsongs,
+    addSongToPlaylist,
+    currentTrackIndex,
+    handlePlaySong,
+    removePlaylist,
+  } = useMusic();
 
   const filteredSongs = allsongs.filter((song) => {
     const matching =
@@ -28,41 +36,63 @@ export default function Playlist() {
     }
   };
 
+  const handleAddSong = (song) => {
+    if (selectedPlayList) {
+      addSongToPlaylist(selectedPlayList.id, song);
+      setSearchQuery("");
+      setShowDropdown(false);
+    }
+  };
+
+  const handlePlayFromPlaylist = (song) => {
+    const globalIndex = allsongs.findIndex((s) => s.id === song.id);
+    handlePlaySong(song, globalIndex);
+  };
+
+  const deletePlaylistmessage = (playlist) => {
+    if (window.confirm(`Are you sure to delete "${playlist.name}" playlist?`)) {
+      removePlaylist(playlist.id);
+    }
+  };
+
   return (
-    <div>
-      <div className="all-songs">
-        <h2>Play List</h2>
-      </div>
-      <div>
-        <div className="playlist-form">
-          <input
-            type="text"
-            placeholder="Playlist Name..."
-            className="playlist0input"
-            onChange={(e) => setNewPlayListName(e.target.value)}
-            value={newPlayListName}
-          />
-          <button className="create-btn" onClick={handleCreatePlaylist}>
-            Create
-          </button>
-        </div>
+    <div className="all-songs">
+      <h2>Play List</h2>
+
+      {/* Create form */}
+      <div className="playlist-form">
+        <input
+          type="text"
+          placeholder="Playlist Name..."
+          className="playlist0input"
+          onChange={(e) => setNewPlayListName(e.target.value)}
+          value={newPlayListName}
+        />
+        <button className="create-btn" onClick={handleCreatePlaylist}>
+          Create
+        </button>
       </div>
 
-      {/* Playlist lits */}
+      {/* Playlist list */}
       <div className="playlist-list">
         {playLists.length === 0 ? (
           <p className="empty-message">No Playlists created Yet</p>
         ) : (
-          playLists.map((Playlist, key) => (
-            <div className="playlist-item" key={key}>
+          playLists.map((Playlist) => (
+            <div className="playlist-item" key={Playlist.id}>
               <div className="plalist-header">
                 <h3>{Playlist.name}</h3>
                 <div className="playlist-actions">
-                  <button className="delete-btn">Delete</button>
+                  <button
+                    className="delete-btn"
+                    onClick={() => deletePlaylistmessage(Playlist)}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
 
-              {/* Add song search */}
+              {/* Search box */}
               <div className="add-song-selection">
                 <div className="search-container">
                   <input
@@ -76,21 +106,27 @@ export default function Playlist() {
                       setSelectedPlayList(Playlist);
                       setShowDropdown(e.target.value.length > 0);
                     }}
-                    onFocus={() => {
+                    onFocus={(e) => {
                       setSelectedPlayList(Playlist);
                       setShowDropdown(e.target.value.length > 0);
                     }}
                     className="song-search-input"
                   />
+
+                  {/* Dropdown */}
                   {selectedPlayList?.id === Playlist.id && showDropdown && (
                     <div className="song-dropdown">
                       {filteredSongs.length === 0 ? (
                         <div className="dropdown-item no-results">
-                          No songs Found
+                          No songs found
                         </div>
                       ) : (
-                        filteredSongs.map((song, key) => (
-                          <div key={key} className="dropdown item">
+                        filteredSongs.slice(0, 5).map((song) => (
+                          <div
+                            key={song.id}
+                            className="dropdown-item"
+                            onClick={() => handleAddSong(song)}
+                          >
                             <span className="song-title">{song.title}</span>
                             <span className="song-artist">{song.artist}</span>
                           </div>
@@ -99,6 +135,27 @@ export default function Playlist() {
                     </div>
                   )}
                 </div>
+              </div>
+
+              {/* Songs in playlist */}
+              <div className="playlist-songs">
+                {Playlist.songs.length === 0 ? (
+                  <p className="empty-message">No Songs in the Playlist</p>
+                ) : (
+                  Playlist.songs.map((song) => (
+                    <div
+                      key={song.id}
+                      className={`playlist-song ${currentTrackIndex === allsongs.findIndex((s) => s.id === song.id) ? "active" : ""}`}
+                      onClick={() => handlePlayFromPlaylist(song)}
+                    >
+                      <div className="playlist-song-info">
+                        <span className="song-title">{song.title}</span>
+                        <span className="song-artist">{song.artist}</span>
+                      </div>
+                      <span className="song-duration">{song.duration}</span>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           ))
