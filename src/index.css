@@ -251,6 +251,48 @@ body {
     #555555 var(--progress)
   );
 }
+/* VOLUME CONTAINER */
+.volume-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.volume-icon {
+    font-size: 16px;
+    cursor: pointer;
+    min-width: 20px;
+}
+
+/* VOLUME BAR */
+.volume-bar {
+    flex: 1;
+    appearance: none;
+    height: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    background: linear-gradient(
+        to right,
+        #1db954 calc(var(--volume) * 100%),
+        #555555 calc(var(--volume) * 100%)
+    );
+}
+
+.volume-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.volume-bar::-webkit-slider-thumb:hover {
+    transform: scale(1);
+}
 
 /* PLAYLIST PAGE */
 .playlist-container {

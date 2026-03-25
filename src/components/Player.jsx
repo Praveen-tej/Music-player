@@ -1,6 +1,5 @@
-import {  useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useMusic } from "../contexts/MusicContext";
-
 
 export const Player = () => {
   const {
@@ -10,6 +9,7 @@ export const Player = () => {
     duration,
     setDuration,
     setCurrentTrack,
+    currentTrackIndex,
     setCurrentTime,
     prevTrack,
     nextTrack,
@@ -19,7 +19,7 @@ export const Player = () => {
     setIsPlaying,
     volume,
     setVolume,
-  } = useMusic( )
+  } = useMusic();
 
   const audioRef = useRef(null);
 
@@ -89,8 +89,7 @@ export const Player = () => {
     audio.load();
     setCurrentTime(0);
     setDuration(0);
-    // setIsPlaying(true)
-  }, [currentTrack, setCurrentTime, setDuration]);
+  }, [currentTrack]);
 
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
   return (
@@ -144,6 +143,7 @@ export const Player = () => {
           step="0.1"
           className="volume-bar"
           value={volume}
+          style={{ "--volume": volume }}
           onChange={handleVolumeChange}
         />
       </div>
