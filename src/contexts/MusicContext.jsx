@@ -165,7 +165,6 @@ export const MusicProvider = ({ children }) => {
         duration,
         setDuration,
         setCurrentTrack,
-        currentTrackIndex,
         setCurrentTime,
         nextTrack,
         prevTrack,
@@ -179,7 +178,6 @@ export const MusicProvider = ({ children }) => {
         setPlayList,
         createPlaylists,
         addSongToPlaylist,
-        handlePlaySong,
         removePlaylist
       }}
     >
