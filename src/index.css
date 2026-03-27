@@ -536,3 +536,92 @@ body {
 .playlist-song:hover {
   background-color: #2a2a2a;
 }
+
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* MAIN CONTENT → STACK */
+  .main-content {
+    flex-direction: column;
+  }
+
+  /* PLAYER + SONGS FULL WIDTH */
+  .audio-player,
+  .content-section {
+    width: 100%;
+  }
+
+  /* SONG LIST HEIGHT REDUCE */
+  .songs-grid {
+    height: 250px;
+  }
+
+  /* MUSIC PLAYER */
+  .music-player {
+    padding: 16px;
+  }
+
+  .track-title {
+    font-size: 16px;
+  }
+
+  .track-artist {
+    font-size: 12px;
+  }
+
+  /* CONTROLS */
+  .controls {
+    gap: 14px;
+    justify-content: center;
+  }
+
+  .control-play {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  /* PROGRESS TEXT */
+  .time,
+  .duration {
+    font-size: 11px;
+  }
+
+  /* PLAYLIST FORM */
+  .playlist-form {
+    flex-direction: column;
+  }
+
+  .create-btn {
+    width: 100%;
+  }
+
+  /* INPUT */
+  .playlist0input {
+    width: 100%;
+  }
+
+  /* SONG CARD */
+  .song-card {
+    padding: 10px 12px;
+  }
+
+  .song-title {
+    font-size: 13px;
+  }
+
+  .song-artist {
+    font-size: 11px;
+  }
+}
