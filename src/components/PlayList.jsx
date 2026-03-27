@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMusic } from "../contexts/MusicContext";
 
 export default function Playlist() {
@@ -16,6 +16,21 @@ export default function Playlist() {
     handlePlaySong,
     removePlaylist,
   } = useMusic();
+
+  const clickRef = useRef(null)
+
+  useEffect(() => {
+    const handler = (e) =>{
+      if(clickRef.current && !(clickRef.current.contains(e.target))){
+        setShowDropdown(false)
+      }
+    }
+    document.addEventListener("mousedown",handler)
+
+    return () =>{
+      document.removeEventListener("mousedown",handler)
+    }
+  },[])
 
   const filteredSongs = allsongs.filter((song) => {
     const matching =
@@ -94,7 +109,7 @@ export default function Playlist() {
 
               {/* Search box */}
               <div className="add-song-selection">
-                <div className="search-container">
+                <div className="search-container" ref={clickRef} >
                   <input
                     type="text"
                     placeholder="search songs to add..."
@@ -104,11 +119,10 @@ export default function Playlist() {
                     onChange={(e) => {
                       setSearchQuery(e.target.value);
                       setSelectedPlayList(Playlist);
-                      setShowDropdown(e.target.value.length > 0);
                     }}
                     onFocus={(e) => {
                       setSelectedPlayList(Playlist);
-                      setShowDropdown(e.target.value.length > 0);
+                      setShowDropdown(true);
                     }}
                     className="song-search-input"
                   />
@@ -121,7 +135,7 @@ export default function Playlist() {
                           No songs found
                         </div>
                       ) : (
-                        filteredSongs.slice(0, 5).map((song) => (
+                        filteredSongs.map((song) => (
                           <div
                             key={song.id}
                             className="dropdown-item"
