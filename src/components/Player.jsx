@@ -84,7 +84,7 @@ export const Player = () => {
         audioRef.current.play();
       } else if (loopMode === "all") {
         nextTrack();
-        setTimeout(() => play(),300)
+        setTimeout(() => play(),100)
       }
     };
 
