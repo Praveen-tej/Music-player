@@ -1,28 +1,42 @@
-import {Allsongs} from "./components/AllSongs";
+import { Home } from "./components/Home";
+import { Allsongs } from "./components/AllSongs";
 import Playlist from "./components/PlayList";
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Player } from "./components/Player";
 import { MusicProvider } from "./contexts/MusicContext";
 
-function App() {
+function AppLayout() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   return (
-    <MusicProvider>
-    <BrowserRouter>
+    <>
       <Navbar />
-      <div className="main-content">        
-        <div className="audio-player">
+      <div className="main-content">
+        <div className={isHome ? "audio-player small" : "audio-player"}>
           <Player />
         </div>
         <div className="content-section">
           <Routes>
-            <Route path="/" element={<Allsongs />}/>
-            <Route path="/playlist" element={<Playlist />}/>
+            <Route path="/" element={<Home />} />
+            <Route path="/allsongs" element={<Allsongs />} />
+            <Route path="/playlist" element={<Playlist />} />
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
-    </MusicProvider>
-  )
+    </>
+  );
 }
-export default App
+
+function App() {
+  return (
+    <MusicProvider>
+      <BrowserRouter>
+        <AppLayout />
+      </BrowserRouter>
+    </MusicProvider>
+  );
+}
+
+export default App;

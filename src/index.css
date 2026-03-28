@@ -10,6 +10,274 @@ body {
   padding: 20px;
 }
 
+.home-page {
+  padding: 24px;
+  overflow-y: auto;
+  height: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff20 transparent;
+}
+
+/* Greeting */
+.home-greeting {
+  margin-bottom: 36px;
+}
+
+.greeting-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 6px;
+  /* letter-spacing: -0.5px; */
+}
+
+.greeting-subtitle {
+  font-size: 15px;
+  color: #aaaaaa;
+}
+
+/* Section */
+.home-section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 21px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+}
+
+/* Recently Played Cards */
+.recently-played {
+  display: grid;
+  grid-template-columns: repeat(4, 2fr);
+  gap: 16px;
+}
+
+.recent-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: background 0.2s,
+  transform 0.2s;
+  border: 1px solid #ffffff10;
+}
+
+.recent-card:hover {
+  background: #252525;
+  transform: translateY(-5px);
+}
+
+.recent-card.active-card {
+  background: #1db95420;
+  border-color: #1db95450;
+}
+
+.card-art {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #1db954, #158a3e);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-art-icon {
+  font-size: 32px;
+}
+
+.card-play-btn {
+  position: absolute;
+  inset: 0;
+  background: #00000060;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  border-radius: 8px;
+}
+
+.recent-card:hover .card-play-btn {
+  opacity: 1;
+}
+
+.card-info {
+  padding: 0 2px;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+.card-artist {
+  font-size: 13px;
+  color: #aaaaaa;
+}
+
+/* Playing Indicator Animation */
+.playing-indicator {
+  position: absolute;
+  inset: 0;
+  background: #00000060;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  padding-bottom: 12px;
+  border-radius: 8px;
+}
+
+.playing-indicator span,
+.mini-bars span {
+  display: block;
+  width: 3px;
+  background: #1db954;
+  border-radius: 2px;
+  animation: soundBars 0.8s ease-in-out infinite alternate;
+}
+
+.playing-indicator span:nth-child(1) {
+  height: 10px;
+  animation-delay: 0s;
+}
+
+.playing-indicator span:nth-child(2) {
+  height: 18px;
+  animation-delay: 0.2s;
+}
+
+.playing-indicator span:nth-child(3) {
+  height: 12px;
+  animation-delay: 0.4s;
+}
+
+@keyframes soundBars {
+  from {transform: scaleY(0.4);}
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* All Songs Grid */
+.all-songs-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.song-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.song-row:hover {
+  background: #ffffff10;
+}
+
+.song-row.active-row {
+  background: #1db95415;
+}
+
+.song-row-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.song-row-number {
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row-num {
+  font-size: 14px;
+  color: #aaaaaa;
+}
+
+.mini-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 16px;
+}
+
+.mini-bars span:nth-child(1) {
+  height: 8px;
+  animation-delay: 0s;
+}
+.mini-bars span:nth-child(2) {
+  height: 14px;
+  animation-delay: 0.2s;
+}
+.mini-bars span:nth-child(3) {
+  height: 10px;
+  animation-delay: 0.4s;
+}
+
+.song-row-icon {
+  font-size: 19px;
+  width: 36px;
+  height: 36px;
+  background: #1a1a1a;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.song-row.active-row .song-row-icon {
+  background: #1db95420;
+}
+
+.song-row-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.song-row.active-row .song-row-title {
+  color: #1db954;
+}
+
+.song-row-artist {
+  font-size: 12px;
+  color: #aaaaaa;
+}
+
+.song-row-duration {
+  font-size: 13px;
+  color: #aaaaaa;
+}
+
+@media (max-width: 768px) {
+  .recently-played {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* NAVBAR */
 .navbar {
   display: flex;
@@ -192,7 +460,6 @@ body {
 
 .progress-bar {
   flex: 1;
-  /* -webkit-appearance: none; */
   appearance: none;
   height: 4px;
   border-radius: 4px;
@@ -504,6 +771,7 @@ body {
   flex-direction: column;
   gap: 6px;
 }
+
 .playlist-song {
   display: flex;
   justify-content: space-between;
@@ -566,10 +834,13 @@ body {
   transform: scale(1.1);
 }
 
-/* .loop.active {
-  color: #1db954; /* Spotify green 
-}  */
+.audio-player.small {
+  flex: 0 0 250px; /* small on home */
+}
 
+.audio-player {
+  flex: 1;
+}
 
 @media (max-width: 768px) {
   /* NAVBAR */

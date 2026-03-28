@@ -1,24 +1,37 @@
 import { useMusic } from "../contexts/MusicContext";
 
 export const Allsongs = () => {
-  const { allsongs, currentTrack, currentTrackIndex, handlePlaySong } = useMusic()
+  const { allsongs, currentTrack, currentTrackIndex, handlePlaySong } = useMusic();
+
   return (
     <div className="all-songs">
-      <h2>All songs ({allsongs.length})</h2>
-      <div className="songs-grid">
-        {allsongs.map((song , key) => (
+      <h2>All Songs ({allsongs.length})</h2>
+      <div className="all-songs-grid">
+        {allsongs.map((song, index) => (
           <div
             key={song.id}
-            className={`song-card ${currentTrackIndex === key ? "active" : ""}`}
-            onClick={() => handlePlaySong(song,key)} >
-            <div className="song-info">
-              <h3 className="song-title">{song.title}</h3>
-              <p className="song-artist">{song.artist}</p>
-              <span className="song-duration">{song.duration}</span>
+            className={`song-row ${currentTrackIndex === index ? "active-row" : ""}`}
+            onClick={() => handlePlaySong(song, index)}
+          >
+            <div className="song-row-left">
+              <div className="song-row-number">
+                {currentTrackIndex === index ? (
+                  <div className="mini-bars">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                ) : (
+                  <span className="row-num">{index + 1}</span>
+                )}
+              </div>
+              <div className="song-row-icon">🎵</div>
+              <div className="song-row-info">
+                <p className="song-row-title">{song.title}</p>
+                <p className="song-row-artist">{song.artist}</p>
+              </div>
             </div>
-            <div className="play-button" >
-                {currentTrackIndex === key ?  "▶" : "♪"}
-                </div>
+            <span className="song-row-duration">{song.duration}</span>
           </div>
         ))}
       </div>

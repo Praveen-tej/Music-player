@@ -1,0 +1,112 @@
+import { useMusic } from "../contexts/MusicContext";
+
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good Morning";
+  if (hour < 17) return "Good Afternoon";
+  return "Good Evening";
+};
+
+const getGreetingEmoji = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return "🌅";
+  if (hour < 17) return "☀️";
+  return "🌙";
+};
+
+export const Home = () => {
+  const { allsongs, handlePlaySong, currentTrack, isPlaying, play } = useMusic();
+
+  // Show first 4 songs as "recently played" 
+  const recentSongs = allsongs.slice(0, 4);
+
+  // Show all songs in the grid
+  const allSongsPreview = allsongs;
+
+  const handleSongClick = (song, index) => {
+    if (currentTrack.id === song.id) {
+      play(); // if same song, just play
+    } else {
+      handlePlaySong(song, index);
+      setTimeout(() => play(), 100);
+    }
+  };
+
+  return (
+    <div className="home-page">
+      {/* Greeting Section */}
+      <div className="home-greeting">
+        <h1 className="greeting-title">
+          {getGreetingEmoji()} {getGreeting()}
+        </h1>
+        <p className="greeting-subtitle">What do you want to play today?</p>
+      </div>
+
+      {/* Recently Played Section */}
+      <section className="home-section">
+        <h2 className="section-title">Recently Played</h2>
+        <div className="recently-played">
+          {recentSongs.map((song, index) => (
+            <div
+              key={song.id}
+              className={`recent-card ${currentTrack.id === song.id ? "active-card" : ""}`}
+              onClick={() => handleSongClick(song, index)}
+            >
+              <div className="card-art">
+                <span className="card-art-icon">🎵</span>
+                {currentTrack.id === song.id && isPlaying && (
+                  <div className="playing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                )}
+                {!(currentTrack.id === song.id && isPlaying) && (
+                  <div className="card-play-btn">▶</div>
+                )}
+              </div>
+              <div className="card-info">
+                <p className="card-title">{song.title}</p>
+                <p className="card-artist">{song.artist}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* All Songs Section */}
+      <section className="home-section">
+        <h2 className="section-title">All Songs</h2>
+        <div className="all-songs-grid">
+          {allSongsPreview.map((song, index) => (
+            <div
+              key={song.id}
+              className={`song-row ${currentTrack.id === song.id ? "active-row" : ""}`}
+              onClick={() => handleSongClick(song, index)}
+            >
+              <div className="song-row-left">
+                <div className="song-row-number">
+                  {currentTrack.id === song.id && isPlaying ? (
+                    <div className="mini-bars">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                  ) : (
+                    <span className="row-num">{index + 1}</span>
+                  )}
+                </div>
+                <div className="song-row-icon">🎵</div>
+                <div className="song-row-info">
+                  <p className="song-row-title">{song.title}</p>
+                  <p className="song-row-artist">{song.artist}</p>
+                </div>
+              </div>
+              <span className="song-row-duration">{song.duration}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+};
