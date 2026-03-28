@@ -2,6 +2,12 @@ import { useEffect, useRef } from "react";
 import { useMusic } from "../contexts/MusicContext";
 
 export const Player = () => {
+  const loopIcons = {
+    none: "➡️",
+    all: "🔁",
+    one: "🔂",
+  };
+
   const {
     currentTrack,
     formatTime,
@@ -19,6 +25,9 @@ export const Player = () => {
     setIsPlaying,
     volume,
     setVolume,
+    loopMode,
+    setLoopMode,
+    loopEvent,
   } = useMusic();
 
   const audioRef = useRef(null);
@@ -46,8 +55,12 @@ export const Player = () => {
     const audio = audioRef.current;
     if (!audio) return;
 
+    audio.load();
+    setCurrentTime(0);
+    setDuration(0);
+
     if (isPlaying) {
-      audio.play().catch((err) => console.log(err));
+      audio.play().catch((err) => console.log("Play error:", err));
     } else {
       audio.pause();
     }
@@ -66,7 +79,13 @@ export const Player = () => {
     };
 
     const handleEnded = () => {
-      nextTrack();
+      if (loopMode === "one") {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
+      } else if (loopMode === "all") {
+        nextTrack();
+        setTimeout(() => play(),300)
+      }
     };
 
     audio.addEventListener("loadedmetadata", handleLoadMetadata);
@@ -80,7 +99,7 @@ export const Player = () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("ended", handleEnded);
     };
-  }, [setDuration, setCurrentTrack, currentTrack, nextTrack]);
+  }, [setDuration, setCurrentTrack, currentTrack, nextTrack, loopMode]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -94,12 +113,7 @@ export const Player = () => {
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
   return (
     <div className="music-player">
-      <audio
-        ref={audioRef}
-        src={currentTrack.url}
-        preload="metadata"
-        crossOrigin="anonymous"
-      />
+      <audio ref={audioRef} src={currentTrack.url} preload="metadata" />
 
       <div className="track-info">
         <h3 className="track-title">{currentTrack.title}</h3>
@@ -121,6 +135,9 @@ export const Player = () => {
         <span className="duration">{formatTime(duration)}</span>
       </div>
       <div className="controls">
+        <span className="loop" onClick={loopEvent}>
+          {loopIcons[loopMode]}
+        </span>
         <div className="control-prev" onClick={prevTrack}>
           ⏮
         </div>

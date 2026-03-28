@@ -263,6 +263,7 @@ body {
     #555555 var(--progress)
   );
 }
+
 /* VOLUME CONTAINER */
 .volume-container {
   display: flex;
@@ -549,6 +550,26 @@ body {
 .playlist-song:hover {
   background-color: #2a2a2a;
 }
+
+.loop {
+  display: flex;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.loop:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+/* .loop.active {
+  color: #1db954; /* Spotify green 
+}  */
+
 
 @media (max-width: 768px) {
   /* NAVBAR */

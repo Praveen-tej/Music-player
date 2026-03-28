@@ -71,31 +71,31 @@ export const MusicProvider = ({ children }) => {
   const [volume, setVolume] = useState(1);
   const [playLists, setPlayList] = useState([]);
 
+  const [loopMode, setLoopMode] = useState("none");
 
   useEffect(() => {
-    const savedPlaylist = localStorage.getItem("musicPlayerPlaylist")
-    if(savedPlaylist){
-      const playLists = JSON.parse(savedPlaylist)
-      setPlayList(playLists)
+    const savedPlaylist = localStorage.getItem("musicPlayerPlaylist");
+    if (savedPlaylist) {
+      const playLists = JSON.parse(savedPlaylist);
+      setPlayList(playLists);
     }
-  },[])
+  }, []);
 
   useEffect(() => {
-    if(playLists.length > 0) {
-      localStorage.setItem("musicPlayerPlaylist" , JSON.stringify(playLists) )
+    if (playLists.length > 0) {
+      localStorage.setItem("musicPlayerPlaylist", JSON.stringify(playLists));
+    } else {
+      localStorage.removeItem("musicPlayerPlaylist");
     }
-    else{
-      localStorage.removeItem("musicPlayerPlaylist")
-    }
-  },[playLists])
+  }, [playLists]);
 
   const handlePlaySong = (song, index) => {
     setCurrentTrack(song);
     setCurrentTrackIndex(index);
-    setIsPlaying(false)
+    setIsPlaying(false);
   };
 
-  const nextTrack = () => {
+  const nextTrack = (shouldPlay) => {
     if (currentTrackIndex === allsongs.length - 1) {
       setCurrentTrackIndex(0);
       setCurrentTrack(allsongs[0]);
@@ -115,6 +115,16 @@ export const MusicProvider = ({ children }) => {
       setCurrentTrack(allsongs[currentTrackIndex - 1]);
     }
     setIsPlaying(false);
+  };
+
+  const loopEvent = () => {
+    if (loopMode === "none") {
+      setLoopMode("all");
+    } else if (loopMode === "all") {
+      setLoopMode("one");
+    } else {
+      setLoopMode("none");
+    }
   };
 
   const formatTime = (time) => {
@@ -147,8 +157,10 @@ export const MusicProvider = ({ children }) => {
   };
 
   const removePlaylist = (playlistId) => {
-    setPlayList((prev) => prev.filter((playlist) => playlist.id !== playlistId))
-  }
+    setPlayList((prev) =>
+      prev.filter((playlist) => playlist.id !== playlistId),
+    );
+  };
 
   const play = () => setIsPlaying(true);
   const pause = () => setIsPlaying(false);
@@ -178,7 +190,10 @@ export const MusicProvider = ({ children }) => {
         setPlayList,
         createPlaylists,
         addSongToPlaylist,
-        removePlaylist
+        removePlaylist,
+        loopMode, 
+        setLoopMode,
+        loopEvent
       }}
     >
       {children}

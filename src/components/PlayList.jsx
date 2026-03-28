@@ -26,7 +26,6 @@ export default function Playlist() {
       }
     }
     document.addEventListener("mousedown",handler)
-
     return () =>{
       document.removeEventListener("mousedown",handler)
     }
@@ -40,7 +39,6 @@ export default function Playlist() {
     const songAlreadyInPlaylist = selectedPlayList?.songs.some(
       (playlistSong) => playlistSong.id === song.id,
     );
-
     return matching && !songAlreadyInPlaylist;
   });
 
