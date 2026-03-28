@@ -55,7 +55,7 @@ export const Player = () => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    audio.load();
+    // audio.load();
     setCurrentTime(0);
     setDuration(0);
 
