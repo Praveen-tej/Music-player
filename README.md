@@ -1,16 +1,51 @@
-# React + Vite
+# 🎵 Music Player
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern music player web app built with React.js, inspired by Spotify, YouTube Music, and JioSaavn.
 
-Currently, two official plugins are available:
+🔗 **Live Demo** → https://tej-melodify.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🎵 Playback
+* Play, Pause, Next, and Previous track controls
+* Smooth progress bar — seek to any position in the song
+* Volume control with a live slider
+* Songs auto-advance when the current track ends
 
-## Expanding the ESLint configuration
+### 🔁 Loop Modes
+* **None** → stops after the song ends
+* **Loop All** → continuously plays through all songs
+* **Loop One** → restarts the current song on repeat
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 📋 Playlist Management
+* Create and delete custom playlists
+* Search and add any song to a playlist
+* Playlists saved to localStorage — survive page refresh
+
+### 🏠 Home Page
+* Time-based greeting — Good Morning / Afternoon / Evening
+* Recently played section with card-style layout
+* Full songs preview list with now-playing indicator
+
+### 🎶 Now Playing Indicator
+* Animated sound bars show the currently playing song
+* Active song highlighted across all pages
+
+### 📱 Responsive Design
+* Works on mobile, tablet, and desktop
+* Player stacks on top on mobile just like Spotify
+
+---
+
+## 🛠️ Built With
+
+* **React** — UI and state management
+* **React Router** — page navigation
+* **Context API** — global music state
+* **HTML5 Audio API** — audio playback and control
+* **CSS3** — animations and responsive layout
+* **localStorage** — persistent playlist storage
+* **Vite** — development build tool
+* **Vercel** — deployment and hosting
