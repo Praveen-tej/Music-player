@@ -1,3 +1,10 @@
+
+<img width="1333" height="550" alt="Screenshot 2026-03-31 105848" src="https://github.com/user-attachments/assets/fb40f78c-5fb1-43df-8a5b-3899ad6d3938" />
+<img width="1339" height="558" alt="Screenshot 2026-03-31 110018" src="https://github.com/user-attachments/assets/3098304c-333b-4389-8950-79583abb6d88" />
+
+
+
+
 # 🎵 Music Player
 
 A modern music player web app built with React.js, inspired by Spotify, YouTube Music, and JioSaavn.
