@@ -1,13 +1,26 @@
+import React from "react";
 import { useMusic } from "../contexts/MusicContext";
 
+interface Song {
+  id: number;
+  title: string;
+  artist: string;
+  duration: string;
+}
+
 export const Allsongs = () => {
-  const { allsongs, currentTrack, currentTrackIndex, handlePlaySong } = useMusic();
+  const { 
+    allsongs,           // Song[]
+    currentTrack,       // Song
+    currentTrackIndex,  // number
+    handlePlaySong      // (song: Song, index: number) => void
+  } = useMusic();
 
   return (
     <div className="all-songs">
       <h2>All Songs ({allsongs.length})</h2>
       <div className="all-songs-grid">
-        {allsongs.map((song, index) => (
+        {allsongs.map((song: Song, index: number) => (
           <div
             key={song.id}
             className={`song-row ${currentTrackIndex === index ? "active-row" : ""}`}
