@@ -203,6 +203,11 @@ body {
   animation: soundBars 0.8s ease-in-out infinite alternate;
 }
 
+.playing-indicator.paused span,
+.mini-bars.paused span {
+  animation-play-state: paused; 
+}
+
 .playing-indicator span:nth-child(1) { height: 10px; animation-delay: 0s; }
 .playing-indicator span:nth-child(2) { height: 18px; animation-delay: 0.2s; }
 .playing-indicator span:nth-child(3) { height: 12px; animation-delay: 0.4s; }

@@ -34,7 +34,7 @@ export const Home = () => {
   const searchRef = useRef(null);
 
   useClickOutside(searchRef, () => setShowDropdown(false))
-  
+
   // Show first 4 songs as "recently played"
   const recentSongs = allsongs.slice(0, 4);
 
@@ -114,7 +114,7 @@ export const Home = () => {
               <div className="card-art">
                 <span className="card-art-icon">🎵</span>
                 {currentTrack?.id === song.id && isPlaying && (
-                  <div className="playing-indicator">
+                  <div className={`playing-indicator ${!isPlaying ? "paused" : ""}`}>
                     <span></span>
                     <span></span>
                     <span></span>
