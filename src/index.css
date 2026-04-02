@@ -856,47 +856,49 @@ body {
   background: #2a2a2a;
 }
 
-/* ================= MOBILE (max 768px) ================= */
+/* ================= 768px RESPONSIVE ================= */
 @media (max-width: 768px) {
 
+  /* Body */
   body {
-    padding: 10px;
-  }
-
-  /* Navbar */
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
     padding: 12px;
   }
 
-  .navbar-links {
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
+  /* HOME PAGE */
+  .home-page {
+    min-height: 100dvh;
+    padding: 16px;
   }
 
   /* Greeting */
   .greeting-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 8px;
   }
 
-  /* Search Fix */
+  .greeting-title {
+    font-size: 22px;
+  }
+
+  /* SEARCH */
   .search {
     width: 100%;
-    margin: 0;   /* REMOVE that 350px issue */
+    margin: 0;
+    height: 40px;
+    font-size: 16px;
   }
 
-  /* Recently Played */
+  /* RECENTLY PLAYED */
   .recently-played {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
-  /* Main Layout */
+  /* MAIN LAYOUT */
   .main-content {
     flex-direction: column;
+    gap: 16px;
   }
 
   .audio-player,
@@ -905,7 +907,7 @@ body {
     flex: none;
   }
 
-  /* Song Row */
+  /* SONG ROW */
   .song-row {
     flex-direction: column;
     align-items: flex-start;
@@ -916,34 +918,9 @@ body {
     align-self: flex-end;
   }
 
-  /* Controls */
+  /* CONTROLS */
   .controls {
     gap: 12px;
-  }
-
-  /* Playlist */
-  .playlist-form {
-    flex-direction: column;
-  }
-
-  .create-btn {
-    width: 100%;
-  }
-}
-
-/* ================= SMALL MOBILE (max 480px) ================= */
-@media (max-width: 480px) {
-
-  .greeting-title {
-    font-size: 20px;
-  }
-
-  .section-title {
-    font-size: 18px;
-  }
-
-  .recently-played {
-    grid-template-columns: 1fr; /* single column */
   }
 
   .control-play {
@@ -953,15 +930,16 @@ body {
 
   .control-next,
   .control-prev {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
   }
 
-  .track-title {
-    font-size: 16px;
+  /* PLAYLIST */
+  .playlist-form {
+    flex-direction: column;
   }
 
-  .track-artist {
-    font-size: 12px;
+  .create-btn {
+    width: 100%;
   }
 }
