@@ -28,9 +28,8 @@ export const Player = () => {
     setLoopMode,
     loopEvent,
     song,
-    formatTime 
+    formatTime,
   } = useMusic();
-
 
   const audioRef = useRef(null);
 
@@ -53,6 +52,13 @@ export const Player = () => {
     audio.volume = volume;
   }, [volume]);
 
+  const isPlayingRef = useRef(isPlaying);
+
+  //useEffect to keep ref in sync
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -62,9 +68,24 @@ export const Player = () => {
     setDuration(0);
 
     if (isPlaying) {
+      const playWhenReady = () => {
+        if (isPlayingRef.current) {
+          // ✅ check LATEST value, not stale closure
+          audio.play().catch((err) => console.log("Play error:", err));
+        }
+        audio.removeEventListener("canplay", playWhenReady);
+      };
+      audio.addEventListener("canplay", playWhenReady);
+    }
+  }, [currentTrack]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) {
       audio.play().catch((err) => console.log("Play error:", err));
     } else {
-      audio.pause();
+      audio.pause(); 
     }
   }, [isPlaying]);
 
@@ -86,7 +107,7 @@ export const Player = () => {
         audioRef.current.play();
       } else if (loopMode === "all") {
         nextTrack();
-        setTimeout(() => play(),100)
+        setTimeout(() => play(), 100);
       }
     };
 
@@ -112,7 +133,7 @@ export const Player = () => {
     setDuration(0);
   }, [currentTrack]);
 
-    if (!currentTrack) return null;
+  if (!currentTrack) return null;
 
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
   return (

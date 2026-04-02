@@ -64,6 +64,7 @@ body {
 .greeting-title {
   font-size: 28px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .greeting-subtitle {
@@ -73,8 +74,9 @@ body {
 
 .search {
   width: 280px;
-  margin-top: -10px;
-  margin-right: 350px;
+  display: flex;
+  margin-top: -25px;
+  margin-left: 80px;
   height: 36px;
   padding: 8px 15px;
   border-radius: 20px;
@@ -95,6 +97,9 @@ body {
   color: #ffffff;
   margin-bottom: 16px;
   letter-spacing: -0.3px;
+}
+.search-play{
+  color: white;
 }
 
 /* Recently Played Cards */

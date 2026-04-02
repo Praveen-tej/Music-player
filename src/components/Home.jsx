@@ -1,5 +1,6 @@
 import { useMusic } from "../contexts/MusicContext";
-import { useState , useEffect , useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import useClickOutside from "./useClickOutside";
 
 const getGreeting = () => {
   const hour = new Date().getHours();
@@ -30,8 +31,9 @@ export const Home = () => {
   } = useMusic();
 
   const [showDropdown, setShowDropdown] = useState(false);
-  const clickRef = useRef(null);
+  const searchRef = useRef(null);
 
+  useClickOutside(searchRef, () => setShowDropdown(false))
   // Show first 4 songs as "recently played"
   const recentSongs = allsongs.slice(0, 4);
 
@@ -61,13 +63,40 @@ export const Home = () => {
           </div>
 
           {/* RIGHT SIDE */}
-          <input
-            className="search"
-            type="text"
-            placeholder="Search Songs to Play..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <div className="search-container" ref={searchRef} >
+            <input
+              className="search"
+              type="text"
+              placeholder="Search Songs to Play..."
+              value={searchTerm}
+              onChange={(e) => {setSearchTerm(e.target.value)
+              setShowDropdown(true)}}
+              onFocus={() => setShowDropdown(true)}
+
+            />
+            { showDropdown &&(
+              <div className="song-dropdown">
+                {filteredSongs.length > 0 ? 
+                (
+                  filteredSongs.slice(0,10).map((song, index) => (
+                    <div
+                      key={index}
+                      className="dropdown-item"
+                      onClick={() => handlePlaySong(song)}
+                    >
+                      <div>
+                        <p className="song-title">{song.title}</p>
+                        <p className="song-artist">{song.artist}</p>
+                      </div>
+                      <span className="search-play">▶</span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="dropdown-item no-results">No songs found</div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 

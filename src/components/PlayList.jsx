@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useMusic } from "../contexts/MusicContext";
+import useClickOutside from "./useClickOutside";
 
 export default function Playlist() {
   const [newPlayListName, setNewPlayListName] = useState("");
@@ -19,17 +20,7 @@ export default function Playlist() {
 
   const clickRef = useRef(null)
 
-  useEffect(() => {
-    const handler = (e) =>{
-      if(clickRef.current && !(clickRef.current.contains(e.target))){
-        setShowDropdown(false)
-      }
-    }
-    document.addEventListener("mousedown",handler)
-    return () =>{
-      document.removeEventListener("mousedown",handler)
-    }
-  },[])
+  useClickOutside(clickRef, () => setShowDropdown(false))
 
   const filteredSongs = allsongs.filter((song) => {
     const matching =
