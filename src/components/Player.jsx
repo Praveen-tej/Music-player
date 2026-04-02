@@ -125,7 +125,7 @@ export const Player = () => {
       </div>
 
       <div className="progress-container">
-        <span className="time">{formatTime(duration)}</span>
+        <span className="time">{formatTime(currentTime)}</span>
         <input
           type="range"
           min="0"
