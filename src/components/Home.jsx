@@ -1,4 +1,5 @@
 import { useMusic } from "../contexts/MusicContext";
+import { useState , useEffect , useRef } from "react";
 
 const getGreeting = () => {
   const hour = new Date().getHours();
@@ -28,14 +29,17 @@ export const Home = () => {
     song,
   } = useMusic();
 
+  const [showDropdown, setShowDropdown] = useState(false);
+  const clickRef = useRef(null);
+
   // Show first 4 songs as "recently played"
   const recentSongs = allsongs.slice(0, 4);
 
   // Show all songs in the grid
-  const allSongsPreview = allsongs;
+  const allSongsPreview = filteredSongs;
 
   const handleSongClick = (song, index) => {
-    if (currentTrack.id === song.id) {
+    if (currentTrack?.id === song.id) {
       play(); // if same song, just play
     } else {
       handlePlaySong(song, index);
@@ -60,7 +64,7 @@ export const Home = () => {
           <input
             className="search"
             type="text"
-            placeholder="Search Songs to Play..." 
+            placeholder="Search Songs to Play..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -74,19 +78,19 @@ export const Home = () => {
           {recentSongs.map((song, index) => (
             <div
               key={song.id}
-              className={`recent-card ${currentTrack.id === song.id ? "active-card" : ""}`}
+              className={`recent-card ${currentTrack?.id === song.id ? "active-card" : ""}`}
               onClick={() => handleSongClick(song, index)}
             >
               <div className="card-art">
                 <span className="card-art-icon">🎵</span>
-                {currentTrack.id === song.id && isPlaying && (
+                {currentTrack?.id === song.id && isPlaying && (
                   <div className="playing-indicator">
                     <span></span>
                     <span></span>
                     <span></span>
                   </div>
                 )}
-                {!(currentTrack.id === song.id && isPlaying) && (
+                {!(currentTrack?.id === song.id && isPlaying) && (
                   <div className="card-play-btn">▶</div>
                 )}
               </div>
@@ -106,12 +110,12 @@ export const Home = () => {
           {allSongsPreview.map((song, index) => (
             <div
               key={song.id}
-              className={`song-row ${currentTrack.id === song.id ? "active-row" : ""}`}
+              className={`song-row ${currentTrack?.id === song.id ? "active-row" : ""}`}
               onClick={() => handleSongClick(song, index)}
             >
               <div className="song-row-left">
                 <div className="song-row-number">
-                  {currentTrack.id === song.id && isPlaying ? (
+                  {currentTrack?.id === song.id && isPlaying ? (
                     <div className="mini-bars">
                       <span></span>
                       <span></span>

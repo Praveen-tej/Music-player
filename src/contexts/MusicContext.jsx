@@ -14,7 +14,7 @@ export const MusicProvider = ({ children }) => {
   const [playLists, setPlayList] = useState([]);
   const [loopMode, setLoopMode] = useState("none");
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading , setIsLoading] = useState(false);
+  const [isLoading , setIsLoading] = useState(true);
 
   const filteredSongs = allsongs.filter(
     (song) =>
@@ -38,6 +38,7 @@ export const MusicProvider = ({ children }) => {
         }));
         setAllsongs(formattedSongs);
         setCurrentTrack(formattedSongs[0]);
+        setIsLoading(false)
       })
       .catch((err) => console.log("Error Message :", err));
   }, []);
@@ -166,6 +167,7 @@ export const MusicProvider = ({ children }) => {
         filteredSongs,
         searchTerm,
         setSearchTerm,
+        isLoading
       }}
     >
       {children}
