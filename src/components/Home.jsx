@@ -36,7 +36,7 @@ export const Home = () => {
   const recentSongs = allsongs.slice(0, 4);
 
   // Show all songs in the grid
-  const allSongsPreview = filteredSongs;
+  const allSongsPreview = allsongs;
 
   const handleSongClick = (song, index) => {
     if (currentTrack?.id === song.id) {
