@@ -5,7 +5,7 @@ interface Song {
   id: number;
   title: string;
   artist: string;
-  duration: string;
+  duration: number;
 }
 
 export const Allsongs = () => {
@@ -13,7 +13,8 @@ export const Allsongs = () => {
     allsongs,           // Song[]
     currentTrack,       // Song
     currentTrackIndex,  // number
-    handlePlaySong      // (song: Song, index: number) => void
+    handlePlaySong  ,    // (song: Song, index: number) => void
+    formatTime
   } = useMusic();
 
   return (
@@ -44,7 +45,7 @@ export const Allsongs = () => {
                 <p className="song-row-artist">{song.artist}</p>
               </div>
             </div>
-            <span className="song-row-duration">{song.duration}</span>
+            <span className="song-row-duration">{formatTime(song.duration)}</span>
           </div>
         ))}
       </div>

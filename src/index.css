@@ -21,19 +21,42 @@ body {
 
 /* Greeting */
 .home-greeting {
-  margin-bottom: 36px;
+  margin-bottom: 20px;
+}
+
+.greeting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.greeting-left {
+  display: flex;
+  flex-direction: column;
+  color: white;
 }
 
 .greeting-title {
-  font-size: 32px;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 6px;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .greeting-subtitle {
-  font-size: 15px;
-  color: #aaaaaa;
+  color: #aaa;
+  margin-top: 4px;
+}
+
+.search {
+  width: 280px;
+  margin-top: -10px;
+  margin-right: 350px;
+  height: 36px;
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background: #1e1e1e;
+  color: white;
 }
 
 /* Section */
@@ -783,6 +806,29 @@ body {
 .playlist-song-item .song-duration {
   font-size: 12px;
   color: #aaaaaa;
+}
+
+/* Wrapper (optional) */
+.search-container {
+  margin-top: 15px;
+}
+
+
+
+/* Placeholder */
+.search::placeholder {
+  color: #aaa;
+}
+
+/* Focus Effect */
+.search:focus {
+  background: #2a2a2a;
+  box-shadow: 0 0 0 2px #1db954; 
+}
+
+/* Hover */
+.search:hover {
+  background: #2a2a2a;
 }
 
 /* ===== RESPONSIVE ===== */

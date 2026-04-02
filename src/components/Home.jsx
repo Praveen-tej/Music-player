@@ -15,9 +15,20 @@ const getGreetingEmoji = () => {
 };
 
 export const Home = () => {
-  const { allsongs, handlePlaySong, currentTrack, isPlaying, play } = useMusic();
+  const {
+    allsongs,
+    handlePlaySong,
+    currentTrack,
+    isPlaying,
+    play,
+    filteredSongs,
+    searchTerm,
+    setSearchTerm,
+    formatTime,
+    song,
+  } = useMusic();
 
-  // Show first 4 songs as "recently played" 
+  // Show first 4 songs as "recently played"
   const recentSongs = allsongs.slice(0, 4);
 
   // Show all songs in the grid
@@ -36,10 +47,24 @@ export const Home = () => {
     <div className="home-page">
       {/* Greeting Section */}
       <div className="home-greeting">
-        <h1 className="greeting-title">
-          {getGreetingEmoji()} {getGreeting()}
-        </h1>
-        <p className="greeting-subtitle">What do you want to play today?</p>
+        <div className="greeting-row">
+          {/* LEFT SIDE */}
+          <div className="greeting-left">
+            <h1 className="greeting-title">
+              {getGreetingEmoji()} {getGreeting()}
+            </h1>
+            <p className="greeting-subtitle">What do you want to play today?</p>
+          </div>
+
+          {/* RIGHT SIDE */}
+          <input
+            className="search"
+            type="text"
+            placeholder="Search Songs to Play..." 
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
       </div>
 
       {/* Recently Played Section */}
@@ -102,7 +127,9 @@ export const Home = () => {
                   <p className="song-row-artist">{song.artist}</p>
                 </div>
               </div>
-              <span className="song-row-duration">{song.duration}</span>
+              <span className="song-row-duration">
+                {formatTime(song.duration)}
+              </span>
             </div>
           ))}
         </div>

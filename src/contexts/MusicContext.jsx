@@ -2,76 +2,45 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 export const MusicContext = createContext();
 
-const songs = [
-  {
-    id: 1,
-    title: "Keep You Away",
-    artist: "EchoBR",
-    url: "/songs/Keep You Away.wav",
-    duration: "4:32",
-  },
-  {
-    id: 2,
-    title: "Breaching",
-    artist: "EchoBR",
-    url: "/songs/Breaching.wav",
-    duration: "3:45",
-  },
-  {
-    id: 3,
-    title: "Forgotten Memories",
-    artist: "EchoBR",
-    url: "/songs/Forgotten Memories.wav",
-    duration: "3:12",
-  },
-  {
-    id: 4,
-    title: "Nothing You Really Want",
-    artist: "EchoBR",
-    url: "/songs/nothing you really want.wav",
-    duration: "2:58",
-  },
-  {
-    id: 5,
-    title: "Glacier Blue",
-    artist: "EchoBR",
-    url: "/songs/Glacier Blue.wav",
-    duration: "3:28",
-  },
-  {
-    id: 6,
-    title: "In Love",
-    artist: "EchoBR",
-    url: "/songs/In Love.wav",
-    duration: "3:15",
-  },
-  {
-    id: 7,
-    title: "Lemon Balm",
-    artist: "EchoBR",
-    url: "/songs/Lemon Balm.wav",
-    duration: "3:42",
-  },
-  {
-    id: 8,
-    title: "Momentary Bliss",
-    artist: "EchoBR",
-    url: "/songs/Momentary Bliss.wav",
-    duration: "2:45",
-  },
-];
-
 export const MusicProvider = ({ children }) => {
-  const [allsongs, setAllsongs] = useState(songs);
-  const [currentTrack, setCurrentTrack] = useState(songs[0]);
+  const [allsongs, setAllsongs] = useState([]);
+  const [currentTrack, setCurrentTrack] = useState(null);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
   const [playLists, setPlayList] = useState([]);
-
   const [loopMode, setLoopMode] = useState("none");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading , setIsLoading] = useState(false);
+
+  const filteredSongs = allsongs.filter(
+    (song) =>
+      song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      song.artist.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  useEffect(() => {
+    fetch(
+      `https://api.jamendo.com/v3.0/tracks/?client_id=5e2ae395&format=json&limit=20`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.results);
+        const formattedSongs = data.results.map((track) => ({
+          id: track.id,
+          title: track.name,
+          artist: track.artist_name,
+          url: track.audio,
+          duration: track.duration,
+        }));
+        setAllsongs(formattedSongs);
+        setCurrentTrack(formattedSongs[0]);
+      })
+      .catch((err) => console.log("Error Message :", err));
+  }, []);
 
   useEffect(() => {
     const savedPlaylist = localStorage.getItem("musicPlayerPlaylist");
@@ -191,9 +160,12 @@ export const MusicProvider = ({ children }) => {
         createPlaylists,
         addSongToPlaylist,
         removePlaylist,
-        loopMode, 
+        loopMode,
         setLoopMode,
-        loopEvent
+        loopEvent,
+        filteredSongs,
+        searchTerm,
+        setSearchTerm,
       }}
     >
       {children}

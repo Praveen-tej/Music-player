@@ -10,7 +10,6 @@ export const Player = () => {
 
   const {
     currentTrack,
-    formatTime,
     currentTime,
     duration,
     setDuration,
@@ -28,7 +27,10 @@ export const Player = () => {
     loopMode,
     setLoopMode,
     loopEvent,
+    song,
+    formatTime 
   } = useMusic();
+
 
   const audioRef = useRef(null);
 
@@ -110,6 +112,8 @@ export const Player = () => {
     setDuration(0);
   }, [currentTrack]);
 
+    if (!currentTrack) return null;
+
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
   return (
     <div className="music-player">
@@ -121,7 +125,7 @@ export const Player = () => {
       </div>
 
       <div className="progress-container">
-        <span className="time">{formatTime(currentTime)}</span>
+        <span className="time">{formatTime(duration)}</span>
         <input
           type="range"
           min="0"
