@@ -34,6 +34,7 @@ export const Home = () => {
   const searchRef = useRef(null);
 
   useClickOutside(searchRef, () => setShowDropdown(false))
+  
   // Show first 4 songs as "recently played"
   const recentSongs = allsongs.slice(0, 4);
 

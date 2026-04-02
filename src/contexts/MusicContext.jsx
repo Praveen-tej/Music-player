@@ -9,7 +9,7 @@ export const MusicProvider = ({ children }) => {
 
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
   const [playLists, setPlayList] = useState([]);
   const [loopMode, setLoopMode] = useState("none");
