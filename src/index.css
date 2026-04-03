@@ -386,6 +386,7 @@ body {
   height: fit-content;
   flex-direction: column;
   display: flex;
+
 }
 
 .all-songs h2 {
@@ -949,6 +950,9 @@ body {
     flex-direction: column;
   }
 
+  .content-section {
+    width: 100%;
+  }
   .create-btn {
     width: 100%;
   }
