@@ -14,12 +14,12 @@ export const MusicProvider = ({ children }) => {
   const [playLists, setPlayList] = useState([]);
   const [loopMode, setLoopMode] = useState("none");
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading , setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const filteredSongs = allsongs.filter(
     (song) =>
       song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      song.artist.toLowerCase().includes(searchTerm.toLowerCase())
+      song.artist.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export const MusicProvider = ({ children }) => {
         }));
         setAllsongs(formattedSongs);
         setCurrentTrack(formattedSongs[0]);
-        setIsLoading(false)
+        setIsLoading(false);
       })
       .catch((err) => console.log("Error Message :", err));
   }, []);
@@ -63,7 +63,7 @@ export const MusicProvider = ({ children }) => {
     setCurrentTrack(song);
     setCurrentTrackIndex(index);
     setIsPlaying(true);
-    setSearchTerm("")
+    setSearchTerm("");
   };
 
   const nextTrack = (shouldPlay) => {
@@ -90,11 +90,13 @@ export const MusicProvider = ({ children }) => {
 
   const loopEvent = () => {
     if (loopMode === "none") {
-      setLoopMode("all");
-    } else if (loopMode === "all") {
-      setLoopMode("one");
-    } else {
-      setLoopMode("none");
+    setLoopMode("all");
+    }
+    else if(loopMode === "all") {
+      setLoopMode("one")
+    }
+    else{
+      setLoopMode("none")
     }
   };
 
@@ -168,7 +170,7 @@ export const MusicProvider = ({ children }) => {
         filteredSongs,
         searchTerm,
         setSearchTerm,
-        isLoading
+        isLoading,
       }}
     >
       {children}

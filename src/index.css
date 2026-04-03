@@ -599,20 +599,22 @@ body {
 
 /* LOOP */
 .loop {
-  display: flex;
   font-size: 20px;
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
   transition: all 0.2s ease-in-out;
   user-select: none;
+  opacity: 0.5;
+  filter: grayscale(1) brightness(1.5); 
 }
 
-.loop:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: scale(1.1);
+.loop-all,
+.loop-one {
+  opacity: 1;
+  filter: none;
+  background-color: rgba(29, 185, 84, 0.2);
 }
-
 /* ===== PLAYLIST PAGE ===== */
 .playlist-container {
   display: flex;

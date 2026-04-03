@@ -3,7 +3,7 @@ import { useMusic } from "../contexts/MusicContext";
 
 export const Player = () => {
   const loopIcons = {
-    none: "➡️",
+    none: "🔁",
     all: "🔁",
     one: "🔂",
   };
@@ -109,6 +109,9 @@ export const Player = () => {
         nextTrack();
         setTimeout(() => play(), 100);
       }
+      else{
+        nextTrack()
+      }
     };
 
     audio.addEventListener("loadedmetadata", handleLoadMetadata);
@@ -124,14 +127,14 @@ export const Player = () => {
     };
   }, [setDuration, setCurrentTrack, currentTrack, nextTrack, loopMode]);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
+  // useEffect(() => {
+  //   const audio = audioRef.current;
+  //   if (!audio) return;
 
-    audio.load();
-    setCurrentTime(0);
-    setDuration(0);
-  }, [currentTrack]);
+  //   audio.load();
+  //   setCurrentTime(0);
+  //   setDuration(0);
+  // }, [currentTrack]);
 
   if (!currentTrack) return null;
 
@@ -160,7 +163,7 @@ export const Player = () => {
         <span className="duration">{formatTime(duration)}</span>
       </div>
       <div className="controls">
-        <span className="loop" onClick={loopEvent}>
+        <span className={`loop  ${loopMode === "all" ? "loop-all" :""} ${loopMode === "one" ? "loop-one" :""}`} onClick={loopEvent}>
           {loopIcons[loopMode]}
         </span>
         <div className="control-prev" onClick={prevTrack}>
