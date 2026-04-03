@@ -120,9 +120,9 @@ export const Home = () => {
                     <span></span>
                   </div>
                 )}
-                {!(currentTrack?.id === song.id && isPlaying) && (
+                {/* {!(currentTrack?.id === song.id && isPlaying) && (
                   <div className="card-play-btn">▶</div>
-                )}
+                )} */}
               </div>
               <div className="card-info">
                 <p className="card-title">{song.title}</p>

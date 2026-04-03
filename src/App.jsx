@@ -1,5 +1,4 @@
 import { Home } from "./components/Home";
-import { Allsongs } from "./components/AllSongs";
 import Playlist from "./components/PlayList";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
@@ -27,7 +26,6 @@ function AppLayout() {
         <div className="content-section">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/allsongs" element={<Allsongs />} />
             <Route path="/playlist" element={<Playlist />} />
           </Routes>
         </div>
