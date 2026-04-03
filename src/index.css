@@ -606,7 +606,7 @@ body {
   transition: all 0.2s ease-in-out;
   user-select: none;
   opacity: 0.5;
-  filter: grayscale(1) brightness(1.5); 
+  /* filter: grayscale(1) brightness(1.5);  */
 }
 
 .loop-all,

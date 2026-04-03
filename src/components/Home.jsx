@@ -83,7 +83,9 @@ export const Home = () => {
                     <div
                       key={index}
                       className="dropdown-item"
-                      onClick={() => handlePlaySong(song)}
+                      onClick={() => { handlePlaySong(song,index)
+                        setShowDropdown(false)
+                      }}
                     >
                       <div>
                         <p className="song-title">{song.title}</p>
