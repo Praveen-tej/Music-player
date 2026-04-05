@@ -122,9 +122,6 @@ export const Home = () => {
                     <span></span>
                   </div>
                 )}
-                {/* {!(currentTrack?.id === song.id && isPlaying) && (
-                  <div className="card-play-btn">▶</div>
-                )} */}
               </div>
               <div className="card-info">
                 <p className="card-title">{song.title}</p>
@@ -144,7 +141,7 @@ export const Home = () => {
               key={song.id}
               className={`song-row ${currentTrack?.id === song.id ? "active-row" : ""}`}
               onClick={() => handleSongClick(song, index)}
-            >
+              >
               <div className="song-row-left">
                 <div className="song-row-number">
                   {currentTrack?.id === song.id && isPlaying ? (
