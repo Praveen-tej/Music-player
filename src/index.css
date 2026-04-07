@@ -926,43 +926,35 @@ font-size: 16px;
 
 /* ================= 768px RESPONSIVE ================= */
 @media (max-width: 768px) {
-  /* Body */
+  /* ===== BODY ===== */
   body {
-    padding: 12px;
+    padding: 10px;
   }
 
-  /* HOME PAGE */
-  .home-page {
-    min-height: 100dvh;
-    padding: 16px;
-  }
-
-  /* Greeting */
-  .greeting-row {
-    flex-direction: column;
-    align-items: flex-start;
+  /* ===== NAVBAR ===== */
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 14px;
+    flex-wrap: wrap;
     gap: 8px;
   }
 
-  .greeting-title {
-    font-size: 22px;
+  .player {
+    font-size: 14px;
+    white-space: nowrap;
   }
 
-  /* SEARCH */
-  .search {
-    width: 100%;
-    margin: 0;
-    height: 40px;
-    font-size: 16px;
+  .navbar-links {
+    gap: 4px;
   }
 
-  /* RECENTLY PLAYED */
-  .recently-played {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+  .nav-link {
+    font-size: 12px;
+    padding: 4px 8px;
   }
 
-  /* MAIN LAYOUT */
+  /* ===== MAIN LAYOUT ===== */
   .main-content {
     flex-direction: column;
     gap: 16px;
@@ -972,20 +964,28 @@ font-size: 16px;
   .audio-player.small {
     width: 100%;
     flex: none;
+    min-height: unset;
+    padding: 14px;
   }
 
-  /* SONG ROW */
-  .song-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+  .content-section {
+    width: 100%;
   }
 
-  .song-row-duration {
-    align-self: flex-end;
+  /* ===== MUSIC PLAYER ===== */
+  .music-player {
+    padding: 12px;
+    gap: 12px;
   }
 
-  /* CONTROLS */
+  .track-title {
+    font-size: 16px;
+  }
+
+  .track-artist {
+    font-size: 12px;
+  }
+
   .controls {
     gap: 12px;
   }
@@ -993,23 +993,147 @@ font-size: 16px;
   .control-play {
     width: 40px;
     height: 40px;
+    font-size: 16px;
   }
 
   .control-next,
   .control-prev {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
   }
 
-  /* PLAYLIST */
+  .time,
+  .duration {
+    font-size: 11px;
+    min-width: 28px;
+  }
+
+  /* ===== HOME PAGE ===== */
+  .home-page {
+    padding: 12px;
+  }
+
+  .greeting-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .greeting-title {
+    font-size: 22px;
+  }
+
+  .greeting-subtitle {
+    font-size: 13px;
+  }
+
+  /* SEARCH */
+  .search {
+    width: 100%;
+    margin: 0;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  /* RECENTLY PLAYED */
+  .recently-played {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .card-title {
+    font-size: 12px;
+  }
+
+  .card-artist {
+    font-size: 11px;
+  }
+
+  /* ===== SONG ROW ===== */
+  .song-row {
+    flex-direction: row;  /* ← keep horizontal */
+    align-items: center;
+    padding: 8px 10px;
+    gap: 0;
+  }
+
+  .song-row-left {
+    gap: 8px;
+    flex: 1;  /* ← take available space */
+  }
+
+  .song-row-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .song-row-title {
+    font-size: 12px;
+  }
+
+  .song-row-artist {
+    font-size: 11px;
+  }
+
+  .song-row-duration {
+    font-size: 11px;
+    display: none; /* ← hide duration on mobile to save space */
+  }
+
+  /* ===== ALL SONGS BOX ===== */
+  .all-songs {
+    padding: 10px;
+  }
+
+  .all-songs h2 {
+    font-size: 15px;
+  }
+
+  /* ===== LIKED SONGS ===== */
+  .removeLikedsongs {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+
+  .like {
+    font-size: 14px;
+    padding: 2px 4px;
+  }
+
+  /* ===== PLAYLIST PAGE ===== */
   .playlist-form {
     flex-direction: column;
   }
 
-  .content-section {
-    width: 100%;
-  }
   .create-btn {
     width: 100%;
+  }
+
+  .playlist0input {
+    width: 100%;
+  }
+
+  .playlist-item {
+    padding: 10px 12px;
+  }
+
+  .plalist-header h3 {
+    font-size: 13px;
+  }
+
+  .delete-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  /* DROPDOWN */
+  .song-dropdown {
+    max-height: 160px;
+  }
+
+  .dropdown-item {
+    padding: 8px 10px;
   }
 }
