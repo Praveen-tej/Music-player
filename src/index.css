@@ -9,6 +9,7 @@ body {
   font-family: sans-serif;
   padding: 20px;
 }
+
 .loader-container {
   height: 100vh;
   display: flex;
@@ -86,6 +87,18 @@ body {
   color: white;
 }
 
+.like {
+font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: transform 0.2s;
+  margin-right: 12px;
+}
+
+.like:hover {
+  transform: scale(1.2);
+}
+
 /* Section */
 .home-section {
   margin-bottom: 40px;
@@ -98,7 +111,7 @@ body {
   margin-bottom: 16px;
   letter-spacing: -0.3px;
 }
-.search-play{
+.search-play {
   color: white;
 }
 
@@ -114,7 +127,9 @@ body {
   border-radius: 12px;
   padding: 16px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
   border: 1px solid #ffffff10;
 }
 
@@ -205,16 +220,29 @@ body {
 
 .playing-indicator.paused span,
 .mini-bars.paused span {
-  animation-play-state: paused; 
+  animation-play-state: paused;
 }
 
-.playing-indicator span:nth-child(1) { height: 10px; animation-delay: 0s; }
-.playing-indicator span:nth-child(2) { height: 18px; animation-delay: 0.2s; }
-.playing-indicator span:nth-child(3) { height: 12px; animation-delay: 0.4s; }
+.playing-indicator span:nth-child(1) {
+  height: 10px;
+  animation-delay: 0s;
+}
+.playing-indicator span:nth-child(2) {
+  height: 18px;
+  animation-delay: 0.2s;
+}
+.playing-indicator span:nth-child(3) {
+  height: 12px;
+  animation-delay: 0.4s;
+}
 
 @keyframes soundBars {
-  from { transform: scaleY(0.4); }
-  to   { transform: scaleY(1); }
+  from {
+    transform: scaleY(0.4);
+  }
+  to {
+    transform: scaleY(1);
+  }
 }
 
 /* All Songs Grid */
@@ -267,9 +295,18 @@ body {
   height: 16px;
 }
 
-.mini-bars span:nth-child(1) { height: 8px;  animation-delay: 0s; }
-.mini-bars span:nth-child(2) { height: 14px; animation-delay: 0.2s; }
-.mini-bars span:nth-child(3) { height: 10px; animation-delay: 0.4s; }
+.mini-bars span:nth-child(1) {
+  height: 8px;
+  animation-delay: 0s;
+}
+.mini-bars span:nth-child(2) {
+  height: 14px;
+  animation-delay: 0.2s;
+}
+.mini-bars span:nth-child(3) {
+  height: 10px;
+  animation-delay: 0.4s;
+}
 
 .song-row-icon {
   font-size: 19px;
@@ -336,7 +373,9 @@ body {
   text-decoration: none;
   padding: 6px 12px;
   border-radius: 6px;
-  transition: color 0.5s, border-bottom 0.5s;
+  transition:
+    color 0.5s,
+    border-bottom 0.5s;
   border-bottom: 2px solid transparent;
 }
 
@@ -386,7 +425,6 @@ body {
   height: fit-content;
   flex-direction: column;
   display: flex;
-
 }
 
 .all-songs h2 {
@@ -708,7 +746,9 @@ body {
   padding: 6px 12px;
   font-size: 12px;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .delete-btn:hover {
@@ -851,8 +891,6 @@ body {
   margin-top: 15px;
 }
 
-
-
 /* Placeholder */
 .search::placeholder {
   color: #aaa;
@@ -861,7 +899,7 @@ body {
 /* Focus Effect */
 .search:focus {
   background: #2a2a2a;
-  box-shadow: 0 0 0 2px #1db954; 
+  box-shadow: 0 0 0 2px #1db954;
 }
 
 /* Hover */
@@ -871,7 +909,6 @@ body {
 
 /* ================= 768px RESPONSIVE ================= */
 @media (max-width: 768px) {
-
   /* Body */
   body {
     padding: 12px;

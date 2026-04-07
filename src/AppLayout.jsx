@@ -22,7 +22,6 @@ function App() {
           <div className="content-section">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/allsongs" element={<Allsongs />} />
               <Route path="/playlist" element={<Playlist />} />
             </Routes>
           </div>

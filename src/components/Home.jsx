@@ -28,12 +28,14 @@ export const Home = () => {
     setSearchTerm,
     formatTime,
     song,
+    likedSongs,
+    toggleFavorite,
   } = useMusic();
 
   const [showDropdown, setShowDropdown] = useState(false);
   const searchRef = useRef(null);
 
-  useClickOutside(searchRef, () => setShowDropdown(false))
+  useClickOutside(searchRef, () => setShowDropdown(false));
 
   // Show first 4 songs as "recently played"
   const recentSongs = allsongs.slice(0, 4);
@@ -64,27 +66,28 @@ export const Home = () => {
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="search-container" ref={searchRef} >
+          <div className="search-container" ref={searchRef}>
             <input
               className="search"
               type="text"
               placeholder="Search Songs to Play..."
               value={searchTerm}
-              onChange={(e) => {setSearchTerm(e.target.value)
-              setShowDropdown(true)}}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setShowDropdown(true);
+              }}
               onFocus={() => setShowDropdown(true)}
-
             />
-            { showDropdown &&(
+            {showDropdown && (
               <div className="song-dropdown">
-                {filteredSongs.length > 0 ? 
-                (
-                  filteredSongs.slice(0,10).map((song, index) => (
+                {filteredSongs.length > 0 ? (
+                  filteredSongs.slice(0, 10).map((song, index) => (
                     <div
                       key={index}
                       className="dropdown-item"
-                      onClick={() => { handlePlaySong(song,index)
-                        setShowDropdown(false)
+                      onClick={() => {
+                        handlePlaySong(song, index);
+                        setShowDropdown(false);
                       }}
                     >
                       <div>
@@ -116,7 +119,9 @@ export const Home = () => {
               <div className="card-art">
                 <span className="card-art-icon">🎵</span>
                 {currentTrack?.id === song.id && isPlaying && (
-                  <div className={`playing-indicator ${!isPlaying ? "paused" : ""}`}>
+                  <div
+                    className={`playing-indicator ${!isPlaying ? "paused" : ""}`}
+                  >
                     <span></span>
                     <span></span>
                     <span></span>
@@ -141,7 +146,7 @@ export const Home = () => {
               key={song.id}
               className={`song-row ${currentTrack?.id === song.id ? "active-row" : ""}`}
               onClick={() => handleSongClick(song, index)}
-              >
+            >
               <div className="song-row-left">
                 <div className="song-row-number">
                   {currentTrack?.id === song.id && isPlaying ? (
@@ -160,9 +165,20 @@ export const Home = () => {
                   <p className="song-row-artist">{song.artist}</p>
                 </div>
               </div>
-              <span className="song-row-duration">
-                {formatTime(song.duration)}
-              </span>
+              <div className="song-row-right">
+                <span
+                  className="like"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleFavorite(song);
+                  }}
+                >
+                  {likedSongs.some((s) => s.id === song.id) ? "❤️" : "🤍"}
+                </span>
+                <span className="song-row-duration">
+                  {formatTime(song.duration)}
+                </span>
+              </div>
             </div>
           ))}
         </div>

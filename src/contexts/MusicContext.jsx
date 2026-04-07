@@ -15,6 +15,17 @@ export const MusicProvider = ({ children }) => {
   const [loopMode, setLoopMode] = useState("none");
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [likedSongs, setLikedSongs] = useState([]);
+
+  const toggleFavorite = (song) => {
+    const isLiked = likedSongs.some((s) => s.id === song.id);
+
+    if (isLiked) {
+      setLikedSongs((prev) => prev.filter((s) => s.is !== song.id));
+    } else {
+      setLikedSongs((prev) => [...prev, song]);
+    }
+  };
 
   const filteredSongs = allsongs.filter(
     (song) =>
@@ -90,13 +101,11 @@ export const MusicProvider = ({ children }) => {
 
   const loopEvent = () => {
     if (loopMode === "none") {
-    setLoopMode("all");
-    }
-    else if(loopMode === "all") {
-      setLoopMode("one")
-    }
-    else{
-      setLoopMode("none")
+      setLoopMode("all");
+    } else if (loopMode === "all") {
+      setLoopMode("one");
+    } else {
+      setLoopMode("none");
     }
   };
 
@@ -171,6 +180,8 @@ export const MusicProvider = ({ children }) => {
         searchTerm,
         setSearchTerm,
         isLoading,
+        likedSongs,
+        toggleFavorite,
       }}
     >
       {children}

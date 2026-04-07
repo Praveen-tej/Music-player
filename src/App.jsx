@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Player } from "./components/Player";
 import { MusicProvider, useMusic } from "./contexts/MusicContext";
 import { Loader } from "./components/Loader";
+import Liked from "./components/Liked";
 
 function AppLayout() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function AppLayout() {
         <div className="content-section">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/favorites" element={<Liked/>}/>
             <Route path="/playlist" element={<Playlist />} />
           </Routes>
         </div>
