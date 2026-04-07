@@ -441,7 +441,24 @@ font-size: 16px;
   flex-direction: column;
   gap: 8px;
 }
+.removeLikedsongs {
+  /* display: flex; */
+  float: right;
+  background-color: transparent;
+  color: #ff4444;
+  border: 1px solid #ff4444;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  gap: 10px;
+}
 
+.removeLikedsongs:hover {
+  background-color: #ff4444;
+  color: #ffffff;
+}
 /* SONG CARD (old style — kept for safety) */
 .song-card {
   background-color: #2a2a2a;

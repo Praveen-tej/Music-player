@@ -144,6 +144,25 @@ export const MusicProvider = ({ children }) => {
     );
   };
 
+ 
+  useEffect(() => {
+    const saved = localStorage.getItem("likedSongs");
+    if (saved) setLikedSongs(JSON.parse(saved));
+  }, []);
+
+
+  useEffect(() => {
+    if (likedSongs.length > 0) {
+      localStorage.setItem("likedSongs", JSON.stringify(likedSongs));
+    } else {
+      localStorage.removeItem("likedSongs");
+    }
+  }, [likedSongs]);
+
+  const removeLikedSongs = (likedSongID) => {
+    setLikedSongs((prev) => prev.filter((likedSongs) => likedSongs.id !== likedSongID))
+  }
+
   const play = () => setIsPlaying(true);
   const pause = () => setIsPlaying(false);
 
@@ -182,6 +201,8 @@ export const MusicProvider = ({ children }) => {
         isLoading,
         likedSongs,
         toggleFavorite,
+        removeLikedSongs, 
+        setLikedSongs
       }}
     >
       {children}
