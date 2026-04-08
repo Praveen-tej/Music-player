@@ -163,7 +163,7 @@ export const Player = () => {
         <span className="duration">{formatTime(duration)}</span>
       </div>
       <div className="controls">
-        <span className={`loop  ${loopMode === "all" ? "loop-all" :""} ${loopMode === "one" ? "loop-one" :""}`} onClick={loopEvent}>
+        <span className={`loop  ${loopMode === "all" ? "loop-all" :""}${loopMode === "one" ? "loop-one" :""}`} onClick={loopEvent}>
           {loopIcons[loopMode]}
         </span>
         <div className="control-prev" onClick={prevTrack}>
