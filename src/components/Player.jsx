@@ -171,7 +171,7 @@ export const Player = () => {
         </div>
         <div
           className="control-play"
-          onClick={() => (isPlaying ? pause() : play())}
+          onClick={() => (isPlaying ? pause() : play(song))}
         >
           {isPlaying ? "⏸" : "▶"}
         </div>
