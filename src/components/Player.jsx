@@ -29,7 +29,8 @@ export const Player = () => {
     loopEvent,
     song,
     formatTime,
-  } = useMusic();
+  }
+   = useMusic();
 
   const audioRef = useRef(null);
 
@@ -70,7 +71,7 @@ export const Player = () => {
     if (isPlaying) {
       const playWhenReady = () => {
         if (isPlayingRef.current) {
-          // ✅ check LATEST value, not stale closure
+
           audio.play().catch((err) => console.log("Play error:", err));
         }
         audio.removeEventListener("canplay", playWhenReady);
