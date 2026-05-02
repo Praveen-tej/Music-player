@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { useMusic } from "../contexts/MusicContext";
-
 export const Player = () => {
   const loopIcons = {
     none: "🔁",
