@@ -54,7 +54,6 @@ export const Player = () => {
 
   const isPlayingRef = useRef(isPlaying);
 
-  //useEffect to keep ref in sync
   useEffect(() => {
     isPlayingRef.current = isPlaying;
   }, [isPlaying]);
